@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS invalid_token (
+    token TEXT PRIMARY KEY,
+    expires TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

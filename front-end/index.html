@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basketball Court Booking System — Pyxis X</title>
+  <style>
+    /* Modern CSS Reset & Variables */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    :root {
+      --primary: #E85D04;
+      --primary-hover: #C94E03;
+      --primary-light: #FFF0E6;
+      --dark: #0F172A;
+      --bg-main: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border: #E2E8F0;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --success: #22C55E;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      overflow-y: auto;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.02);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(232, 93, 4, 0.3);
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    /* Form Elements */
+    input[type=date], select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 14px;
+      color: var(--text-main);
+      background: #F1F5F9;
+    }
+
+    input[type=date]:focus {
+      border-color: var(--primary);
+      background: #fff;
+      outline: none;
+      box-shadow: 0 0 0 4px var(--primary-light);
+    }
+
+    .duration-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .dur-btn {
+      padding: 10px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .dur-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .dur-btn:hover:not(.active) {
+      border-color: var(--text-muted);
+      background: var(--bg-main);
+    }
+
+    /* Court List */
+    .court-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .court-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    .court-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(4px);
+    }
+
+    .court-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .court-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .court-cap {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Cart & Summary */
+    .cart-items {
+      background: #F1F5F9;
+      padding: 12px;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .summary-box {
+      margin-top: auto;
+      background: var(--dark);
+      border-radius: var(--radius);
+      padding: 20px;
+      color: white;
+    }
+
+    .sum-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .sum-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn-book {
+      width: 100%;
+      padding: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(232, 93, 4, 0.4);
+    }
+
+    .btn-book:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Main Content */
+    .main {
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .main-header {
+      margin-bottom: 32px;
+    }
+
+    .main-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -1px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      background: white;
+      padding: 12px 20px;
+      border-radius: 99px;
+      width: fit-content;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .leg-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .leg-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+    }
+
+    /* Grid Styling */
+    #gridWrapper {
+      background: white;
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .slot {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 6px;
+      margin: 2px;
+      font-size: 14px;
+    }
+
+    .slot.available {
+      background: #F8FAFC;
+      color: #CBD5E1;
+      border: 1px dashed var(--border);
+    }
+
+    .slot.available:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary);
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    .slot.selected {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(232, 93, 4, 0.3);
+    }
+
+    .slot.booked {
+      background: #F1F5F9;
+      color: #CBD5E1;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .grid-label-header {
+      background: #F8FAFC;
+      padding: 10px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .grid-court-name {
+      padding: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-8c0-2.76 2.24-5 5-5v10c-2.76 0-5-2.24-5-5z" />
+          </svg>
+        </div>
+        <div>
+          <div class="logo-text">Pyxis Court</div>
+          <div class="logo-sub">Premium Basketball Arena</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Pilih Tanggal</div>
+        <input type="date" id="bookDate">
+      </div>
+
+      <div>
+        <div class="section-label">Durasi Main</div>
+        <div class="duration-grid" id="durGrid">
+          <div class="dur-btn active" data-dur="60">1 Jam</div>
+          <div class="dur-btn" data-dur="90">1.5 Jam</div>
+          <div class="dur-btn" data-dur="120">2 Jam</div>
+          <div class="dur-btn" data-dur="180">3 Jam</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Pilihan Lapangan</div>
+        <div class="court-list" id="courtList"></div>
+      </div>
+
+      <div style="flex:1">
+        <div class="section-label">Ringkasan Pilihan</div>
+        <div class="cart-items" id="cartItems">
+          <div class="empty-cart" style="font-size: 12px; color: var(--text-muted); text-align: center; padding: 20px;">
+            Belum ada slot dipilih
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <div class="sum-row"><span>Total Durasi</span><span id="durInfo">—</span></div>
+        <div class="sum-row"><span>Pajak & Layanan</span><span>Terhitung</span></div>
+        <div class="sum-total"><span>Total</span><span id="grandTotal">Rp 0</span></div>
+      </div>
+
+      <button class="btn-book" onclick="handleBook()">Bayar Sekarang</button>
+    </div>
+
+    <div class="main">
+      <div class="main-header">
+        <div class="main-title" id="dateDisplay">Jadwal Lapangan</div>
+        <p style="color: var(--text-muted)">Silahkan pilih slot waktu yang tersedia pada grid di bawah ini.</p>
+      </div>
+
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot" style="background:#F8FAFC; border: 1px solid var(--border)"></div> Tersedia</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--primary)"></div> Dipilih</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#F1F5F9"></div> Terisi</div>
+      </div>
+
+      <div id="gridWrapper"></div>
+    </div>
+  </div>
+
+  <script>
+    /* SCRIPT TETAP SAMA SEPERTI ASLINYA */
+    const courts = [
+      { id: 1, name: 'Lapangan A', cap: 10, price: 75000 },
+      { id: 2, name: 'Lapangan B', cap: 10, price: 75000 },
+      { id: 3, name: 'Lapangan C (Indoor)', cap: 12, price: 100000 },
+      { id: 4, name: 'Lapangan D (VIP)', cap: 8, price: 150000 }
+    ];
+    const BOOKED_SLOTS = {
+      1: ['08:00', '09:00', '14:00', '15:00'],
+      2: ['10:00', '11:00', '16:00'],
+      3: ['09:00', '10:00', '11:00', '19:00'],
+      4: ['13:00', '14:00', '15:00', '20:00']
+    };
+    const TIMES = [];
+    for (let h = 7; h <= 22; h++) TIMES.push(`${String(h).padStart(2, '0')}:00`);
+
+    let selectedCourt = courts[0];
+    let selectedDur = 60;
+    let basket = [];
+
+    function init() {
+      const today = new Date();
+      document.getElementById('bookDate').value = today.toISOString().split('T')[0];
+      document.getElementById('bookDate').addEventListener('change', renderAll);
+      renderCourts();
+      setupDur();
+      renderAll();
+    }
+
+    function renderCourts() {
+      const el = document.getElementById('courtList');
+      el.innerHTML = courts.map(c => `
+      <div class="court-item ${c.id === selectedCourt.id ? 'selected' : ''}" onclick="selectCourt(${c.id})">
+        <div class="court-dot"></div>
+        <div>
+          <div class="court-name">${c.name}</div>
+          <div class="court-cap">Rp ${c.price.toLocaleString('id')}/jam</div>
+        </div>
+      </div>
+    `).join('');
+    }
+
+    function selectCourt(id) {
+      selectedCourt = courts.find(c => c.id === id);
+      renderCourts();
+      renderGrid();
+    }
+
+    function setupDur() {
+      document.querySelectorAll('.dur-btn').forEach(b => {
+        b.onclick = () => {
+          document.querySelectorAll('.dur-btn').forEach(x => x.classList.remove('active'));
+          b.classList.add('active');
+          selectedDur = parseInt(b.dataset.dur);
+          renderGrid();
+          updateSummary();
+        };
+      });
+    }
+
+    function renderAll() {
+      const d = document.getElementById('bookDate').value;
+      if (d) {
+        const dt = new Date(d + 'T00:00:00');
+        const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        document.getElementById('dateDisplay').textContent = dt.toLocaleDateString('id-ID', opts);
+      }
+      renderGrid();
+    }
+
+    function isBooked(courtId, time) {
+      return (BOOKED_SLOTS[courtId] || []).includes(time);
+    }
+
+    function isInBasket(courtId, time) {
+      return basket.some(b => b.courtId === courtId && b.time === time);
+    }
+
+    function renderGrid() {
+      const slotsPerDur = selectedDur / 60;
+      const wrapper = document.getElementById('gridWrapper');
+      const cols = `120px ` + TIMES.map(() => `minmax(45px,1fr)`).join(' ');
+
+      let html = `<div style="display:grid; grid-template-columns:${cols}; gap:4px;">`;
+      html += `<div class="grid-label-header" style="text-align:left; padding-left:10px">Arena</div>`;
+      TIMES.forEach(t => { html += `<div class="grid-label-header">${t}</div>`; });
+
+      courts.forEach(court => {
+        html += `<div class="grid-court-name">${court.name.replace('Lapangan ', 'Lap. ')}</div>`;
+        TIMES.forEach((time, idx) => {
+          const booked = isBooked(court.id, time);
+          const inBasket = isInBasket(court.id, time);
+          const enoughRoom = idx + slotsPerDur <= TIMES.length;
+          let cls = 'slot ';
+          let label = '';
+          if (booked) { cls += 'booked'; label = '—' }
+          else if (inBasket) { cls += 'selected'; label = '✓' }
+          else if (!enoughRoom) { cls += 'booked'; label = '' }
+          else { cls += 'available'; label = '+' }
+          html += `<div class="${cls}" onclick="toggleSlot(${court.id},'${time}')">${label}</div>`;
+        });
+      });
+
+      html += '</div>';
+      wrapper.innerHTML = html;
+    }
+
+    function toggleSlot(courtId, time) {
+      const court = courts.find(c => c.id === courtId);
+      if (isBooked(courtId, time)) return;
+      const exists = basket.findIndex(b => b.courtId === courtId && b.time === time);
+      if (exists > -1) {
+        basket.splice(exists, 1);
+      } else {
+        basket.push({ courtId, time, courtName: court.name, price: court.price * (selectedDur / 60), dur: selectedDur });
+      }
+      renderGrid();
+      renderCart();
+      updateSummary();
+    }
+
+    function renderCart() {
+      const el = document.getElementById('cartItems');
+      if (basket.length === 0) { el.innerHTML = '<div class="empty-cart">Belum ada slot dipilih</div>'; return; }
+      el.innerHTML = basket.map((b, i) => `
+      <div class="cart-item">
+        <div>
+          <div style="font-weight:700; font-size:13px;">${b.courtName}</div>
+          <div style="color:var(--text-muted); font-size:11px;">${b.time} (${b.dur}m)</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px">
+          <div style="font-size:12px; font-weight:700;">Rp ${b.price.toLocaleString('id')}</div>
+          <button style="border:none; background:none; cursor:pointer; color:red; font-weight:bold;" onclick="removeItem(${i})">✕</button>
+        </div>
+      </div>
+    `).join('');
+    }
+
+    function removeItem(i) { basket.splice(i, 1); renderGrid(); renderCart(); updateSummary(); }
+
+    function updateSummary() {
+      const total = basket.reduce((s, b) => s + b.price, 0);
+      document.getElementById('grandTotal').textContent = `Rp ${total.toLocaleString('id')}`;
+      document.getElementById('durInfo').textContent = basket.length > 0 ? `${basket.length} Sesi` : '—';
+    }
+
+    function handleBook() {
+      if (basket.length === 0) { alert('Pilih slot waktu terlebih dahulu!'); return; }
+      alert(`✅ Reservasi Berhasil Dibuat!\nTotal Pembayaran: Rp ${basket.reduce((s,b)=>s+b.price,0).toLocaleString('id')}`);
+      basket = []; renderGrid(); renderCart(); updateSummary();
+    }
+
+    init();
+  </script>
+</body>
+</html>
