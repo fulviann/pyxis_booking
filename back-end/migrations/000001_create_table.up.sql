@@ -13,7 +13,7 @@ CREATE TYPE webhook_status AS ENUM ('pending','sent','failed');
 -- ======================
 CREATE TABLE merchants (
     merchant_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    merchant_code VARCHAR(13) UNIQUE NOT NULL,
+    merchant_code VARCHAR(15) UNIQUE NOT NULL,
     name VARCHAR(100) NOT NULL,
     address TEXT,
     phone_number VARCHAR(15),
@@ -28,7 +28,7 @@ CREATE TABLE merchants (
 -- ======================
 CREATE TABLE court (
     court_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    court_code VARCHAR(13) UNIQUE NOT NULL,
+    court_code VARCHAR(15) UNIQUE NOT NULL,
     merchant_uuid UUID NOT NULL,
     name VARCHAR(100) NOT NULL,
     type VARCHAR(100) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE court (
 -- ======================
 CREATE TABLE member (
     member_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    member_code VARCHAR(13) UNIQUE NOT NULL,
+    member_code VARCHAR(15) UNIQUE NOT NULL,
     name VARCHAR(100) NOT NULL,
     phone_number VARCHAR(15) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE member (
 -- ======================
 CREATE TABLE cart (
     cart_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    cart_code VARCHAR(13) UNIQUE NOT NULL,
+    cart_code VARCHAR(15) UNIQUE NOT NULL,
     court_uuid UUID,
     member_uuid UUID,
     duration INT NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE cart (
 CREATE TABLE reserv_h (
     reserv_h_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     member_uuid UUID,
-    reserv_h_code VARCHAR(13) UNIQUE NOT NULL,
+    reserv_h_code VARCHAR(15) UNIQUE NOT NULL,
 
     member_name VARCHAR(100) NOT NULL,
     phone_number VARCHAR(15) NOT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE payment (
 -- ======================
 CREATE TABLE master_sequence (
     master_sequence_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    master_seq_code VARCHAR(13) UNIQUE NOT NULL,
+    master_seq_code VARCHAR(15) UNIQUE NOT NULL,
     sequence_name VARCHAR(100) NOT NULL,
     seq_no VARCHAR(15) NOT NULL,
 

@@ -64,7 +64,7 @@ VALUES
 ('MBR15042026003', 'Admin System', '080000000000', 'admin@system.com',
  '$2a$10$7EqJtq98hPqEX7fNZaFWoOHiY3VYj6lZ9E9QnUnxE27XGr0Ccs9xG', 'ADMIN');
 
- -- ======================
+-- ======================
 -- INSERT: blackouts
 -- ======================
 INSERT INTO blackouts (
