@@ -1,0 +1,5 @@
+.env
+predict
+classes.json
+uploads/
+kamus_videos/
