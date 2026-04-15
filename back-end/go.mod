@@ -1,4 +1,4 @@
-module github.com/devanadindra/signlink-mobile/back-end
+module github.com/fulviann/pyxis_booking/back-end
 
 go 1.24.0
 

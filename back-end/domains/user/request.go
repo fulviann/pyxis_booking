@@ -4,7 +4,7 @@ import (
 	"mime/multipart"
 	"time"
 
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
 )
 
 type LoginReq struct {

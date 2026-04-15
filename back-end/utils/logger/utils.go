@@ -36,8 +36,8 @@ func getTracerrCallers(err error) (originalErr error, callers []string) {
 
 	for _, frame := range tracerErr.StackTrace() {
 
-		// remove caller that not from "github.com/devanadindra/signlink-mobile/back-end" and remove that prefix
-		funcSplit := strings.Split(frame.Func, "github.com/devanadindra/signlink-mobile/back-end")
+		// remove caller that not from "github.com/fulviann/pyxis_booking/back-end" and remove that prefix
+		funcSplit := strings.Split(frame.Func, "github.com/fulviann/pyxis_booking/back-end")
 		if len(funcSplit) == 1 {
 			continue
 		}

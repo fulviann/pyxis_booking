@@ -7,8 +7,8 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
-	contextUtil "github.com/devanadindra/signlink-mobile/back-end/utils/context"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
+	contextUtil "github.com/fulviann/pyxis_booking/back-end/utils/context"
 )
 
 func Trace(ctx context.Context, format string, values ...interface{}) {

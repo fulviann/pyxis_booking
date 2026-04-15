@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"time"
 
-	"github.com/devanadindra/signlink-mobile/back-end/utils/logger"
+	"github.com/fulviann/pyxis_booking/back-end/utils/logger"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 )

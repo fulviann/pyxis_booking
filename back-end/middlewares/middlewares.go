@@ -15,13 +15,13 @@ import (
 	"github.com/google/uuid"
 	"golang.org/x/time/rate"
 
-	"github.com/devanadindra/signlink-mobile/back-end/domains/user"
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/config"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
-	contextUtil "github.com/devanadindra/signlink-mobile/back-end/utils/context"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/logger"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/respond"
+	"github.com/fulviann/pyxis_booking/back-end/domains/user"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
+	"github.com/fulviann/pyxis_booking/back-end/utils/config"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
+	contextUtil "github.com/fulviann/pyxis_booking/back-end/utils/context"
+	"github.com/fulviann/pyxis_booking/back-end/utils/logger"
+	"github.com/fulviann/pyxis_booking/back-end/utils/respond"
 )
 
 type Middlewares interface {

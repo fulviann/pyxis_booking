@@ -4,10 +4,10 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/devanadindra/signlink-mobile/back-end/database"
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
-	contextUtil "github.com/devanadindra/signlink-mobile/back-end/utils/context"
+	"github.com/fulviann/pyxis_booking/back-end/database"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
+	contextUtil "github.com/fulviann/pyxis_booking/back-end/utils/context"
 	"gorm.io/gorm"
 )
 

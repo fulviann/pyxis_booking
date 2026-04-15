@@ -3,7 +3,7 @@ package respond
 import (
 	"fmt"
 
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
 	"github.com/gin-gonic/gin"
 )
 

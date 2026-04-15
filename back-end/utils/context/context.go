@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
 )
 
 func GinWithCtx(ginCtx *gin.Context, ctx context.Context) *gin.Context {

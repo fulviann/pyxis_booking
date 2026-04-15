@@ -8,7 +8,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"github.com/devanadindra/signlink-mobile/back-end/utils/config"
+	"github.com/fulviann/pyxis_booking/back-end/utils/config"
 )
 
 type AdminDB struct {

@@ -8,12 +8,12 @@ import (
 	_ "github.com/google/subcommands"
 	"github.com/google/wire"
 
-	"github.com/devanadindra/signlink-mobile/back-end/database"
-	"github.com/devanadindra/signlink-mobile/back-end/domains/user"
-	"github.com/devanadindra/signlink-mobile/back-end/middlewares"
-	"github.com/devanadindra/signlink-mobile/back-end/routes"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/config"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/dbselector"
+	"github.com/fulviann/pyxis_booking/back-end/database"
+	"github.com/fulviann/pyxis_booking/back-end/domains/user"
+	"github.com/fulviann/pyxis_booking/back-end/middlewares"
+	"github.com/fulviann/pyxis_booking/back-end/routes"
+	"github.com/fulviann/pyxis_booking/back-end/utils/config"
+	"github.com/fulviann/pyxis_booking/back-end/utils/dbselector"
 )
 
 var dbSet = wire.NewSet(

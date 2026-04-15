@@ -8,9 +8,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/devanadindra/signlink-mobile/back-end/utils/config"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/logger"
-	wireinject "github.com/devanadindra/signlink-mobile/back-end/wire"
+	"github.com/fulviann/pyxis_booking/back-end/utils/config"
+	"github.com/fulviann/pyxis_booking/back-end/utils/logger"
+	wireinject "github.com/fulviann/pyxis_booking/back-end/wire"
 	"github.com/go-playground/validator/v10"
 	"github.com/rs/cors"
 )

@@ -5,9 +5,9 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/devanadindra/signlink-mobile/back-end/routes"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/config"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/logger"
+	"github.com/fulviann/pyxis_booking/back-end/routes"
+	"github.com/fulviann/pyxis_booking/back-end/utils/config"
+	"github.com/fulviann/pyxis_booking/back-end/utils/logger"
 )
 
 func getLevel(level string) logrus.Level {

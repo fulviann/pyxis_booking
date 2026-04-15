@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/devanadindra/signlink-mobile/back-end/database"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/logger"
+	"github.com/fulviann/pyxis_booking/back-end/database"
+	"github.com/fulviann/pyxis_booking/back-end/utils/logger"
 )
 
 type Dependency struct {

@@ -3,10 +3,10 @@ package logger
 import (
 	"time"
 
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
 )
 
-const PACKAGE_NAME = "github.com/devanadindra/signlink-mobile/back-end"
+const PACKAGE_NAME = "github.com/fulviann/pyxis_booking/back-end"
 
 type LogPayload struct {
 	Method         string

@@ -14,13 +14,13 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
-	"github.com/devanadindra/signlink-mobile/back-end/database"
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/config"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
-	contextUtil "github.com/devanadindra/signlink-mobile/back-end/utils/context"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/dbselector"
-	fileutils "github.com/devanadindra/signlink-mobile/back-end/utils/file"
+	"github.com/fulviann/pyxis_booking/back-end/database"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
+	"github.com/fulviann/pyxis_booking/back-end/utils/config"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
+	contextUtil "github.com/fulviann/pyxis_booking/back-end/utils/context"
+	"github.com/fulviann/pyxis_booking/back-end/utils/dbselector"
+	fileutils "github.com/fulviann/pyxis_booking/back-end/utils/file"
 )
 
 type Service interface {

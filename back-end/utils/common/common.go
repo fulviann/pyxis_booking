@@ -11,8 +11,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
 )
 
 func GetMetaData(ctx *gin.Context, validate *validator.Validate, allowedColumns ...string) (res *constants.FilterReq, err error) {

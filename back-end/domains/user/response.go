@@ -3,7 +3,7 @@ package user
 import (
 	"time"
 
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
 	"github.com/google/uuid"
 )
 

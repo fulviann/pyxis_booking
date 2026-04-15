@@ -5,13 +5,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/devanadindra/signlink-mobile/back-end/database"
-	"github.com/devanadindra/signlink-mobile/back-end/domains/user"
-	"github.com/devanadindra/signlink-mobile/back-end/middlewares"
-	apierror "github.com/devanadindra/signlink-mobile/back-end/utils/api-error"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/config"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/constants"
-	"github.com/devanadindra/signlink-mobile/back-end/utils/respond"
+	"github.com/fulviann/pyxis_booking/back-end/database"
+	"github.com/fulviann/pyxis_booking/back-end/domains/user"
+	"github.com/fulviann/pyxis_booking/back-end/middlewares"
+	apierror "github.com/fulviann/pyxis_booking/back-end/utils/api-error"
+	"github.com/fulviann/pyxis_booking/back-end/utils/config"
+	"github.com/fulviann/pyxis_booking/back-end/utils/constants"
+	"github.com/fulviann/pyxis_booking/back-end/utils/respond"
 )
 
 func NewDependency(
