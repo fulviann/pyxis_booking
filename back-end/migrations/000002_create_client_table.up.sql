@@ -24,7 +24,7 @@ CREATE TABLE
         service_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
         service_code VARCHAR(15) UNIQUE NOT NULL,
         subscription_list_uuid UUID NOT NULL,
-        service_type_uuid UUID NOT NULL,
+        service_category_uuid UUID NOT NULL,
         merchant_uuid UUID NOT NULL,
         name VARCHAR(100) NOT NULL,
         type VARCHAR(100) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE
         status VARCHAR(50) NOT NULL,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
-        CONSTRAINT fk_service_service_type FOREIGN KEY (service_type_uuid) REFERENCES service_types (service_type_uuid) ON DELETE CASCADE,
+        CONSTRAINT fk_service_service_category FOREIGN KEY (service_category_uuid) REFERENCES service_category (service_category_uuid) ON DELETE CASCADE,
         CONSTRAINT fk_service_subscription_list FOREIGN KEY (subscription_list_uuid) REFERENCES subscription_list (subscription_list_uuid) ON DELETE CASCADE,
         CONSTRAINT fk_service_merchant FOREIGN KEY (merchant_uuid) REFERENCES merchants (merchant_uuid) ON DELETE CASCADE
     );
@@ -88,7 +88,7 @@ CREATE TABLE
         reserv_h_uuid UUID,
         service_uuid UUID,
         price DECIMAL(10, 2) NOT NULL,
-        price_type VARCHAR(50) NOT NULL -- e.g., "minute", "hour", "day"
+        price_type VARCHAR(50) NOT NULL, -- e.g., "minute", "hour", "day"
         duration INT NOT NULL,
         total_amount DECIMAL(10, 2) NOT NULL,
         start_reserv_date TIMESTAMPTZ NOT NULL,

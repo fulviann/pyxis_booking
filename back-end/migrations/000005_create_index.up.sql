@@ -3,7 +3,7 @@
 -- ======================
 CREATE INDEX idx_reservd_service ON reserv_d(service_uuid);
 CREATE INDEX idx_reservd_time ON reserv_d(start_reserv_date, end_reserv_date);
-CREATE INDEX idx_payment_reserv ON payment(reserv_h_uuid);
+CREATE INDEX idx_payment_reserv ON reserv_payment(reserv_h_uuid);
 CREATE INDEX idx_blackout_range ON blackouts(service_uuid, start_date, end_date);
 
 -- ======================

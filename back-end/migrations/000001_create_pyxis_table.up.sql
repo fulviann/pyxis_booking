@@ -71,12 +71,12 @@ CREATE TABLE
     );
 
 -- ======================
--- TABLE: service_types
+-- TABLE: service_category
 -- ======================
 CREATE TABLE
-    service_types (
-        service_type_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
-        service_type_code VARCHAR(15) UNIQUE NOT NULL,
+    service_category (
+        service_category_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
+        service_category_code VARCHAR(15) UNIQUE NOT NULL,
         name VARCHAR(100) NOT NULL, -- e.g., "Hotel", "Lapangan Futsal", "Lapangan Badminton"
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW ()
@@ -90,7 +90,7 @@ CREATE TABLE
         subscription_list_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
         package_uuid UUID NOT NULL,
         owner_uuid UUID NOT NULL,
-        service_type_uuid UUID NOT NULL,
+        -- service_category_uuid UUID NOT NULL,
         transaction_date TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         status VARCHAR(50) NOT NULL,
         start_date TIMESTAMPTZ NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         CONSTRAINT fk_subscription_list_package FOREIGN KEY (package_uuid) REFERENCES packages (package_uuid) ON DELETE CASCADE,
         CONSTRAINT fk_subscription_list_owner FOREIGN KEY (owner_uuid) REFERENCES owner (owner_uuid) ON DELETE CASCADE,
-        CONSTRAINT fk_subscription_list_service_type FOREIGN KEY (service_type_uuid) REFERENCES service_types (service_type_uuid) ON DELETE CASCADE
+        -- CONSTRAINT fk_subscription_list_service_category FOREIGN KEY (service_category_uuid) REFERENCES service_category (service_category_uuid) ON DELETE CASCADE
     );
 
 -- ======================
@@ -110,7 +110,7 @@ CREATE TABLE
         transaction_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
         package_uuid UUID NOT NULL,
         owner_uuid UUID NOT NULL,
-        service_type_uuid UUID NOT NULL,
+        service_category_uuid UUID NOT NULL,
         subscription_type VARCHAR(50) NOT NULL,
         transaction_date TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         amount DECIMAL(10, 2) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         CONSTRAINT fk_transactions_package FOREIGN KEY (package_uuid) REFERENCES packages (package_uuid) ON DELETE CASCADE,
         CONSTRAINT fk_transactions_owner FOREIGN KEY (owner_uuid) REFERENCES owner (owner_uuid) ON DELETE CASCADE,
-        CONSTRAINT fk_transactions_service_type FOREIGN KEY (service_type_uuid) REFERENCES service_types (service_type_uuid) ON DELETE CASCADE
+        CONSTRAINT fk_transactions_service_category FOREIGN KEY (service_category_uuid) REFERENCES service_category (service_category_uuid) ON DELETE CASCADE
     );
 
 -- ======================
