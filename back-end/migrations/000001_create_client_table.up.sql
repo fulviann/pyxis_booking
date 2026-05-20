@@ -1,29 +1,10 @@
 -- ======================
--- TABLE: merchants
--- ======================
-CREATE TABLE
-    merchants (
-        merchant_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
-        merchant_code VARCHAR(15) UNIQUE NOT NULL,
-        subscription_list_uuid UUID NOT NULL,
-        name VARCHAR(100) NOT NULL,
-        address TEXT,
-        phone_number VARCHAR(15),
-        email VARCHAR(255),
-        is_active BOOLEAN NOT NULL DEFAULT TRUE,
-        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
-        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
-        CONSTRAINT fk_merchant_subscription_list FOREIGN KEY (subscription_list_uuid) REFERENCES subscription_list (subscription_list_uuid) ON DELETE CASCADE
-    );
-
--- ======================
 -- TABLE: services
 -- ======================
 CREATE TABLE
     services (
         service_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
         service_code VARCHAR(15) UNIQUE NOT NULL,
-        subscription_list_uuid UUID NOT NULL,
         service_category_uuid UUID NOT NULL,
         merchant_uuid UUID NOT NULL,
         name VARCHAR(100) NOT NULL,
@@ -35,7 +16,6 @@ CREATE TABLE
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         CONSTRAINT fk_service_service_category FOREIGN KEY (service_category_uuid) REFERENCES service_category (service_category_uuid) ON DELETE CASCADE,
-        CONSTRAINT fk_service_subscription_list FOREIGN KEY (subscription_list_uuid) REFERENCES subscription_list (subscription_list_uuid) ON DELETE CASCADE,
         CONSTRAINT fk_service_merchant FOREIGN KEY (merchant_uuid) REFERENCES merchants (merchant_uuid) ON DELETE CASCADE
     );
 

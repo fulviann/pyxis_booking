@@ -91,14 +91,13 @@ CREATE TABLE
         package_uuid UUID NOT NULL,
         owner_uuid UUID NOT NULL,
         -- service_category_uuid UUID NOT NULL,
-        transaction_date TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         status VARCHAR(50) NOT NULL,
         start_date TIMESTAMPTZ NOT NULL,
         end_date TIMESTAMPTZ NOT NULL,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         CONSTRAINT fk_subscription_list_package FOREIGN KEY (package_uuid) REFERENCES packages (package_uuid) ON DELETE CASCADE,
-        CONSTRAINT fk_subscription_list_owner FOREIGN KEY (owner_uuid) REFERENCES owner (owner_uuid) ON DELETE CASCADE,
+        CONSTRAINT fk_subscription_list_owner FOREIGN KEY (owner_uuid) REFERENCES owner (owner_uuid) ON DELETE CASCADE
         -- CONSTRAINT fk_subscription_list_service_category FOREIGN KEY (service_category_uuid) REFERENCES service_category (service_category_uuid) ON DELETE CASCADE
     );
 
@@ -141,4 +140,22 @@ CREATE TABLE
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         CONSTRAINT fk_payment_transaction FOREIGN KEY (transaction_uuid) REFERENCES transactions (transaction_uuid) ON DELETE CASCADE
+    );
+
+-- ======================
+-- TABLE: merchants
+-- ======================
+CREATE TABLE
+    merchants (
+        merchant_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
+        merchant_code VARCHAR(15) UNIQUE NOT NULL,
+        subscription_list_uuid UUID NOT NULL,
+        name VARCHAR(100) NOT NULL,
+        address TEXT,
+        phone_number VARCHAR(15),
+        email VARCHAR(255),
+        is_active BOOLEAN NOT NULL DEFAULT TRUE,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
+        CONSTRAINT fk_merchant_subscription_list FOREIGN KEY (subscription_list_uuid) REFERENCES subscription_list (subscription_list_uuid) ON DELETE CASCADE
     );

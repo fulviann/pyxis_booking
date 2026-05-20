@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS owner;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS packages;
+DROP TABLE IF EXISTS service_category;
+DROP TABLE IF EXISTS subscription_list;
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS subscription_payments;
+DROP TABLE IF EXISTS merchants;
