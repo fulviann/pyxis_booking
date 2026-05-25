@@ -9,6 +9,7 @@ CREATE TABLE
         merchant_uuid UUID NOT NULL,
         name VARCHAR(100) NOT NULL,
         type VARCHAR(100) NOT NULL,
+        capacity INT NULL,
         price DECIMAL(10, 2) NOT NULL,
         price_type VARCHAR(50) NOT NULL, -- e.g., "minute", "hour", "day"
         description TEXT,
@@ -51,7 +52,7 @@ CREATE TABLE
         customer_name VARCHAR(100) NOT NULL,
         phone_number VARCHAR(15) NOT NULL,
         email VARCHAR(255),
-        player_qty INT NOT NULL,
+        customer_qty INT NULL,
         total_amount DECIMAL(10, 2) NOT NULL,
         status VARCHAR(50) NOT NULL,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),

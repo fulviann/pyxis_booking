@@ -109,7 +109,7 @@ CREATE TABLE
         transaction_uuid UUID PRIMARY KEY DEFAULT gen_random_uuid (),
         package_uuid UUID NOT NULL,
         owner_uuid UUID NOT NULL,
-        service_category_uuid UUID NOT NULL,
+        -- service_category_uuid UUID NOT NULL,
         subscription_type VARCHAR(50) NOT NULL,
         transaction_date TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         amount DECIMAL(10, 2) NOT NULL,
@@ -120,9 +120,9 @@ CREATE TABLE
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW (),
         CONSTRAINT fk_transactions_package FOREIGN KEY (package_uuid) REFERENCES packages (package_uuid) ON DELETE CASCADE,
         CONSTRAINT fk_transactions_owner FOREIGN KEY (owner_uuid) REFERENCES owner (owner_uuid) ON DELETE CASCADE,
-        CONSTRAINT fk_transactions_service_category FOREIGN KEY (service_category_uuid) REFERENCES service_category (service_category_uuid) ON DELETE CASCADE
+        -- CONSTRAINT fk_transactions_service_category FOREIGN KEY (service_category_uuid) REFERENCES service_category (service_category_uuid) ON DELETE CASCADE
     );
-
+    
 -- ======================
 -- TABLE: subscription_payments
 -- ======================
